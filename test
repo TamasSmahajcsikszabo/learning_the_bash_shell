@@ -1,0 +1,71 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
+then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+export PATH
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+alias p3="python3"
+alias t="cd ~/repos/tmux"
+alias p="tmux -f py.conf attach"
+alias r="tmux -f r.conf attach"
+alias j="tmux -f js.conf attach"
+alias a="tmux kill-server"
+alias l="tmux ls"
+alias o="onedrive --synchronize ~./onedrive --upload-only"
+alias vm="vifm"
+alias v="nvim"
+alias m="mc"
+alias tm="tmux -f app.conf attach"
+alias u="sudo dnf update"
+alias num="numlockx off"
+alias y="lynx"
+alias n="npm start"
+alias k="killall node" # in case node/nodemon stuck
+alias ru="sudo ~/.rupdate" 
+alias pu="~/.pupdate"
+alias ms="sudo mysql"
+alias pg="psql -h localhost -p 5433 -d postgres -U postgres"
+alias cent="psql -h 52.57.58.4 -p 5432 -d postgres -U postgres"
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+export PATH=/home/tamas/mongodb-linux-x86_64-3.0.15/bin:$PATH
+export PGDATA=/home/tamas/Documents/config.conf
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/home/tamas/Downloads/gcloud/google-cloud-sdk/path.bash.inc' ]; then . '/home/tamas/Downloads/gcloud/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/home/tamas/Downloads/gcloud/google-cloud-sdk/completion.bash.inc' ]; then . '/home/tamas/Downloads/gcloud/google-cloud-sdk/completion.bash.inc'; fi
+
+# functions
+function g {
+git add . && git commit . -m "$1" && git push 
+}
+
+function pins {
+python3.8 -m pip install "$1" --user 
+}
+
+function c {
+clang ./"$1" -o ./"$2" -lm
+}
+
+function bt {
+        bt-device --connect="$1"
+}

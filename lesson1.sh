@@ -17,8 +17,8 @@ ls -a -l
  # series with ..: {2..7}; {a..f}
  # combined: echo a{2..4}{r..x}s
 
-cat # copies stdin to stdout; meand catenate = link togethet I and O
-cat < file1 > file2 #is equivalent of cp file1 file2
+cat # copies stdin to stdout; means catenate = link togethet I and O
+cat < file1 > file2 #is equivalent of cp file1 file2; ">" is optional here as cat accepts a parameter
 more # just like cat, but prints out content per pages
 | # pipelne
 ls - l | more
@@ -27,4 +27,10 @@ cut -d: -f1 < /etc/passwd | more
 
 # running in the background with ampersand:
 cut -d: -f1 < /etc/passwd | sort | more&
+
+# prioirty with 
+nice <command>
+
+# searching for files
+find . -name '*.c'
 
